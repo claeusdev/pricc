@@ -1,0 +1,18 @@
+// templates/main.c.template
+/**
+ * @file main.c
+ * @brief Main entry point for {{name}}
+ * @author {{author}}
+ * @description {{description}}
+ */
+
+#include <stdio.h>
+#include "{{name}}.h"
+
+int main(int argc, char *argv[]) {
+    (void)argc;  // Unused parameter
+    (void)argv;  // Unused parameter
+    
+    printf("Welcome to {{name}}!\n");
+    return 0;
+}

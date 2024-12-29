@@ -1,0 +1,29 @@
+/**
+ * @file test_main.c
+ * @brief Test suite for {{name}}
+ */
+
+#include <stdio.h>
+#include <assert.h>
+#include "{{name}}.h"
+
+static void test_basic(void) {
+    // Add your test cases here
+    assert(1 == 1);
+    printf("Basic test passed!\n");
+}
+
+static void test_functionality(void) {
+    // Add specific functionality tests
+    printf("Functionality test passed!\n");
+}
+
+int main(void) {
+    printf("Running tests for {{name}}...\n\n");
+    
+    test_basic();
+    test_functionality();
+    
+    printf("\nAll tests passed!\n");
+    return 0;
+}

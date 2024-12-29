@@ -1,0 +1,17 @@
+# Build files
+build/
+bin/
+*.o
+*.out
+
+# Dependencies
+*.d
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Debug files
+*.dSYM/

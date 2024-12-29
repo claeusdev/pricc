@@ -1,0 +1,65 @@
+# Makefile for {{name}}
+
+# Compiler and flags
+CC      = gcc
+CFLAGS  = -Wall -Wextra -Werror -pedantic
+STD     = {{cstandard}}
+INCLUDE = -Iinclude
+DEBUG   = -g
+OPT     = -O2
+
+# Directories
+SRC_DIR   = src
+BUILD_DIR = build
+TEST_DIR  = tests
+BIN_DIR   = bin
+
+# Source files
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+DEPS = $(OBJS:.o=.d)
+
+# Main target
+TARGET = $(BIN_DIR)/{{name}}
+
+.PHONY: all clean debug release test
+
+# Default build type
+all: release
+
+# Debug build
+debug: CFLAGS += $(DEBUG)
+debug: $(TARGET)
+
+# Release build
+release: CFLAGS += $(OPT)
+release: $(TARGET)
+
+# Main binary
+$(TARGET): $(OBJS) | $(BIN_DIR)
+	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+
+# Object files
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(STD) $(INCLUDE) -MMD -MP -c $< -o $@
+
+# Create necessary directories
+$(BUILD_DIR) $(BIN_DIR):
+	@mkdir -p $@
+
+# Clean build files
+clean:
+	@rm -rf $(BUILD_DIR) $(BIN_DIR)
+
+# Include dependency files
+-include $(DEPS)
+
+# Run tests if they exist
+test: debug
+	@if [ -d "$(TEST_DIR)" ]; then \
+		$(CC) $(CFLAGS) $(STD) $(INCLUDE) $(TEST_DIR)/*.c -o $(BIN_DIR)/tests; \
+		./$(BIN_DIR)/tests; \
+	else \
+		echo "No tests found"; \
+	fi
+

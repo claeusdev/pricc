@@ -1,6 +1,15 @@
 [package]
-name = "pric"
+name = "pricc"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+clap = { version = "4.4", features = ["derive"] }
+
+[[bin]]
+name = "pricc"
+path = "src/main.rs"
+
+[lib]
+name = "pricc_generator"
+path = "src/lib.rs"

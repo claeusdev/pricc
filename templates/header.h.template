@@ -1,0 +1,15 @@
+// templates/header.h.template
+/**
+ * @file {{name}}.h
+ * @brief Main header file for {{name}}
+ * @author {{author}}
+ * @description {{description}}
+ */
+
+#ifndef {{guard}}_H
+#define {{guard}}_H
+
+// Add your declarations here
+
+#endif // {{guard}}_H
+

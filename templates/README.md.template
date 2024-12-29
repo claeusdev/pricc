@@ -1,0 +1,32 @@
+# {{name}}
+
+{{description}}
+
+## About
+
+- Version: {{version}}
+- Author: {{author}}
+
+## Building
+
+For development (with debug symbols):
+```bash
+make debug
+```
+
+For release (with optimizations):
+```bash
+make release
+```
+
+## Testing
+
+Run the test suite:
+```bash
+make test
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+

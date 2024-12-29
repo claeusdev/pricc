@@ -40,7 +40,7 @@ impl From<std::io::Error> for PriccError {
 pub struct PriccConfig {
     pub name: String,
     pub author: Option<String>,
-    pub version: String,
+    pub proj_version: String,
     pub description: Option<String>,
     pub c_standard: CStandard,
     pub include_tests: bool,
@@ -70,7 +70,7 @@ impl Default for PriccConfig {
         Self {
             name: String::new(),
             author: None,
-            version: "0.1.0".to_string(),
+            proj_version: "0.1.0".to_string(),
             description: None,
             c_standard: CStandard::C11,
             include_tests: false,
@@ -223,7 +223,7 @@ impl ProjectBuilder {
                 "author",
                 self.config.author.as_deref().unwrap_or("Anonymous"),
             ),
-            ("version", &self.config.version),
+            ("version", &self.config.proj_version),
         ]);
 
         fs::write(self.root_dir.join("README.md"), readme_content)?;
@@ -289,9 +289,9 @@ pub struct Cli {
     #[arg(short, long)]
     tests: bool,
 
-    /// Project version
-    #[arg(short, long, default_value = "0.1.0")]
-    version: String,
+    /// Project version number
+    #[arg(short = 'v', long = "proj-version", default_value = "0.1.0")]
+    proj_version: String,
 }
 
 impl From<Cli> for PriccConfig {
@@ -307,7 +307,7 @@ impl From<Cli> for PriccConfig {
         }
 
         config.description = cli.description;
-        config.version = cli.version;
+        config.proj_version = cli.proj_version;
         config.c_standard = cli.standard;
 
         config

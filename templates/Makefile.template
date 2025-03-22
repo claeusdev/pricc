@@ -2,7 +2,7 @@
 
 # Compiler and flags
 CC      = gcc
-CFLAGS  = -Wall -Wextra -Werror -pedantic -std={{cstandard}}
+CFLAGS  = -Wall -Wextra -Werror -pedantic {{cstandard}}
 INCLUDE = -Iinclude
 DEBUG   = -g
 OPT     = -O2

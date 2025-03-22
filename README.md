@@ -9,6 +9,13 @@ Can clone this repo and run the command below, must have rust installed.
 ```bash
 cargo install --path .
 ```
+
+Even better, easier:
+
+```bash
+cargo install pricc
+```
+
 Alternatively:
 
 ```bash
@@ -16,6 +23,8 @@ wget https://github.com/claeusdev/pricc/releases/latest/download/pricc
 chmod +x pricc
 sudo mv pricc /usr/local/bin/
 ```
+
+
 
 ## Usage
 

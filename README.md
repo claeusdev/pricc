@@ -4,8 +4,17 @@ A minimal C project generator written in Rust.
 
 ## Installation
 
+Can clone this repo and run the command below, must have rust installed.
+
 ```bash
 cargo install --path .
+```
+Alternatively:
+
+```bash
+wget https://github.com/claeusdev/pricc/releases/latest/download/pricc
+chmod +x pricc
+sudo mv pricc /usr/local/bin/
 ```
 
 ## Usage

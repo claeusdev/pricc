@@ -2,8 +2,7 @@
 
 # Compiler and flags
 CC      = gcc
-CFLAGS  = -Wall -Wextra -Werror -pedantic
-STD     = {{cstandard}}
+CFLAGS  = -Wall -Wextra -Werror -pedantic -std={{cstandard}}
 INCLUDE = -Iinclude
 DEBUG   = -g
 OPT     = -O2
@@ -41,7 +40,7 @@ $(TARGET): $(OBJS) | $(BIN_DIR)
 
 # Object files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(STD) $(INCLUDE) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -MMD -MP -c $< -o $@
 
 # Create necessary directories
 $(BUILD_DIR) $(BIN_DIR):
@@ -57,9 +56,13 @@ clean:
 # Run tests if they exist
 test: debug
 	@if [ -d "$(TEST_DIR)" ]; then \
-		$(CC) $(CFLAGS) $(STD) $(INCLUDE) $(TEST_DIR)/*.c -o $(BIN_DIR)/tests; \
-		./$(BIN_DIR)/tests; \
+		SRCS="$(wildcard $(TEST_DIR)/*.c)"; \
+		if [ -n "$$SRCS" ]; then \
+			$(CC) $(CFLAGS) $(INCLUDE) $$SRCS $(OBJS) -o $(BIN_DIR)/tests; \
+			./$(BIN_DIR)/tests; \
+		else \
+			echo "No test files found."; \
+		fi \
 	else \
-		echo "No tests found"; \
+		echo "No tests directory found."; \
 	fi
-
